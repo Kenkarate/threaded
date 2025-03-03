@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import BodyComponent from "./components/BodyComponent";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import HeaderComponent from "./components/HeaderComponent"
 const AppLayout = () => {
     return (
       <div className="AppLayout">
+        <HeaderComponent/>
         <Outlet />
       </div>
     );
