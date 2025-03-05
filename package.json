@@ -22,10 +22,14 @@
   "description": "",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.13.3",
+    "assert": "^2.1.0",
+    "console-browserify": "^1.2.0",
     "parcel": "^2.13.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "util": "^0.12.5"
   },
   "dependencies": {
+    "antd": "^5.24.2",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
