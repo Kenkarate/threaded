@@ -4,9 +4,10 @@
   "main": "App.js",
   "scripts": {
     "clean": "rmdir /s /q .parcel-cache dist ",
-    "start": "parcel index.html npx tailwindcss -i ./index.scss -o ./src/Assets/output.css --watch",
+    "start": "parcel index.html",
     "build": "parcel build index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind":"npx tailwindcss -i ./index.scss -o ./src/Assets/output.css --watch"
   },
   "repository": {
     "type": "git",
