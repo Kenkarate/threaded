@@ -70,7 +70,7 @@ function Address() {
       <div className="border-t-2 my-[5%]">
         <Title>Shipping method</Title>
         <div>
-          <p>Enter your shipping address to view shipping options</p>
+          <p>Enter your shipping address to view shipping options here</p>
         </div>
       </div>
       <div className="border-t-2 my-[5%]">
