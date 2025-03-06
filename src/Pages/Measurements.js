@@ -2,6 +2,7 @@ import FormItemLabel from "antd/es/form/FormItemLabel";
 import Title from "antd/es/typography/Title";
 import React, { useState } from "react";
 import { Button, Form, Input, Radio } from "antd";
+import measureImage from ".././Assets/images/measure.webp";
 
 function Measurements() {
   const [form] = Form.useForm();
@@ -10,8 +11,8 @@ function Measurements() {
     setFormLayout(layout);
   };
   return (
-    <div>
-      <div className="mx-[5%] my-[5%]">
+    <div className="mx-[5%] my-[5%] grid grid-cols-2">
+      <div>
         <Title level={2}>Kindly fill out the measurements form</Title>
 
         <Form
@@ -22,18 +23,18 @@ function Measurements() {
           }}
           onValuesChange={onFormLayoutChange}
           style={{
-            maxWidth: formLayout === "inline" ? "none" : 600,
+            maxWidth: formLayout === "vertical" ? "none" : 600,
           }}
         >
           <Form.Item layout="horizontal" label="Size" name="layout">
             <Radio.Group value={formLayout}>
-              <Radio.Button value="horizontal">XS</Radio.Button>
-              <Radio.Button value="vertical">S</Radio.Button>
-              <Radio.Button value="inline">M</Radio.Button>
-              <Radio.Button value="inline">L</Radio.Button>
-              <Radio.Button value="inline">XL</Radio.Button>
-              <Radio.Button value="inline">2XL</Radio.Button>
-              <Radio.Button value="inline">3XL</Radio.Button>
+              <Radio.Button value="XS">XS</Radio.Button>
+              <Radio.Button value="S">S</Radio.Button>
+              <Radio.Button value="M">M</Radio.Button>
+              <Radio.Button value="L">L</Radio.Button>
+              <Radio.Button value="XL">XL</Radio.Button>
+              <Radio.Button value="2XL">2XL</Radio.Button>
+              <Radio.Button value="3XL">3XL</Radio.Button>
             </Radio.Group>
           </Form.Item>
           <Form.Item label="Bust">
@@ -52,6 +53,11 @@ function Measurements() {
             <Button type="primary">Submit</Button>
           </Form.Item>
         </Form>
+      </div>
+
+      <div className="border-l-2 pl-5">
+        <Title level={2}>How to measure</Title>
+        <img src={measureImage} alt="" />
       </div>
     </div>
   );
