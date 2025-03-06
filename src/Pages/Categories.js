@@ -38,7 +38,7 @@ function Categories() {
   ];
 
   return (
-    <div className="card-container" style={{display:"flex",padding:"5%"}}>
+    <div className="card-container grid md:grid-col-2 sm:grid-col-2  lg:grid-cols-4 p-[5%]">
       {cardData.map((item, index) => (
         <Card
           key={index}

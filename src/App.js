@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent";
 import Process from "./Pages/Process";
 import Categories from "./Pages/Categories";
+import TypeOfDesign from "./Pages/TypeOfDesign";
+import Measurements from "./Pages/Measurements";
 
 const AppLayout = () => {
   return (
@@ -30,6 +32,14 @@ const approuter = createBrowserRouter([
       },{
         path: "/categories",
         element: <Categories />,
+      },
+      {
+        path: "/typeofdesign",
+        element: <TypeOfDesign />,
+      },
+      {
+        path: "/measurements",
+        element: <Measurements />,
       },
     ],
   },

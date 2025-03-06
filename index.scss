@@ -4,6 +4,9 @@ body{
   'Noto Color Emoji';
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .header {
     display: flex;
