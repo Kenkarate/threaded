@@ -19,6 +19,12 @@ const HeaderComponent = () => {
           <a href="/steps">
             <li className="steps">Buy Now</li>
           </a>
+          <a href="/typeofdesign">
+            <li className="steps">Type of design</li>
+          </a>
+          <a href="/measurements">
+            <li className="steps">Measurement</li>
+          </a>
           <button
             className="toggle-button"
             onClick={() => {
