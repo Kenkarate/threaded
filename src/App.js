@@ -7,6 +7,7 @@ import Process from "./Pages/Process";
 import Categories from "./Pages/Categories";
 import TypeOfDesign from "./Pages/TypeOfDesign";
 import Measurements from "./Pages/Measurements";
+import Address from "./Pages/Address";
 
 const AppLayout = () => {
   return (
@@ -40,6 +41,10 @@ const approuter = createBrowserRouter([
       {
         path: "/measurements",
         element: <Measurements />,
+      },
+      {
+        path: "/address",
+        element: <Address />,
       },
     ],
   },

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "App.js",
   "scripts": {
-    "clean": "rmdir /s /q .parcel-cache dist npx tailwindcss -i ./index.scss -o ./src/Assets/output.css --watch",
-    "start": "parcel index.html",
+    "clean": "rmdir /s /q .parcel-cache dist ",
+    "start": "parcel index.html npx tailwindcss -i ./index.scss -o ./src/Assets/output.css --watch",
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

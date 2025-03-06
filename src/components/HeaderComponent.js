@@ -25,6 +25,9 @@ const HeaderComponent = () => {
           <a href="/measurements">
             <li className="steps">Measurement</li>
           </a>
+          <a href="/address">
+            <li className="steps">Address</li>
+          </a>
           <button
             className="toggle-button"
             onClick={() => {
