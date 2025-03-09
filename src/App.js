@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import BodyComponent from "./components/login";
+import Login from "./components/Login";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent";
 import Process from "./Pages/Process";
@@ -25,7 +25,7 @@ const approuter = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element: <BodyComponent />,
+        element: <Login />,
       },
       {
         path: "/steps",
@@ -35,7 +35,7 @@ const approuter = createBrowserRouter([
         element: <Categories />,
       },
       {
-        path: "/typeofdesign",
+        path: "/typeofdesign/:title",
         element: <TypeOfDesign />,
       },
       {
