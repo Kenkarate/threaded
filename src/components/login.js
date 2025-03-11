@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { useState} from "react";
-
+import { useState, useEffect} from "react";
+import { firebaseConfig } from "../../Firebase"
 
 const BodyComponent = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  
+   
     const handleLogin = () => {
       alert(`Logging in as: ${username}`);
     };
-  
+  console.log()
+  useEffect(() => {
+    console.log(firebaseConfig.apiKey);
+  }, []);
     return (
       <div className="login-container">
         
