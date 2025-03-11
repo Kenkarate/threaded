@@ -61,8 +61,7 @@ console.log(formData);
           onValuesChange={onFormLayoutChange}
           style={{
             maxWidth: formLayout === "vertical" ? "none" : 600,
-          }}
-        >
+          }}>
           <Form.Item layout="horizontal" label="Size" name="size">
             <Radio.Group value={size} onChange={handleSizeChange}>
               <Radio.Button value="XS">XS</Radio.Button>
