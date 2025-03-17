@@ -8,12 +8,15 @@ import Categories from "./Pages/Categories";
 import TypeOfDesign from "./Pages/TypeOfDesign";
 import Measurements from "./Pages/Measurements";
 import Address from "./Pages/Address";
+import HomePage from "./Pages/HomePage";
+import FooterComponent from "./components/FooterComponent";
 
 const AppLayout = () => {
   return (
     <div className="AppLayout">
       <HeaderComponent />
       <Outlet />
+      <FooterComponent />
     </div>
   );
 };
@@ -24,27 +27,20 @@ const approuter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
         path: "/home",
         element: <Login />,
       },
       {
         path: "/steps",
         element: <Process />,
-      },{
+      },
+      {
         path: "/categories",
         element: <Categories />,
-      },
-      {
-        path: "/typeofdesign/:title",
-        element: <TypeOfDesign />,
-      },
-      {
-        path: "/measurements",
-        element: <Measurements />,
-      },
-      {
-        path: "/address",
-        element: <Address />,
       },
     ],
   },

@@ -7,7 +7,7 @@ const HeaderComponent = () => {
     <div className="header">
       <div className="Nav-items">
         <ul className="nav-links">
-          <a href="/home">
+          <a href="/">
             <li className="home">Home</li>
           </a>
           <a href="/categories">
@@ -18,15 +18,6 @@ const HeaderComponent = () => {
           <li className="Cart">Cart</li>
           <a href="/steps">
             <li className="steps">Buy Now</li>
-          </a>
-          <a href="/typeofdesign">
-            <li className="steps">Type of design</li>
-          </a>
-          <a href="/measurements">
-            <li className="steps">Measurement</li>
-          </a>
-          <a href="/address">
-            <li className="steps">Address</li>
           </a>
           <button
             className="toggle-button"
