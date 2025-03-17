@@ -4,7 +4,7 @@ import { Typography } from "antd";
 import React, { useState } from "react";
 import { Button, Form, Input, Radio } from "antd";
 import measureImage from ".././Assets/images/measure.webp";
-import { db } from "../../Firebase"; // Your Firebase config file
+import { db } from "../../firebase"; // Your Firebase config file
 import { collection, addDoc } from "firebase/firestore";
 import { message } from "antd";
 
@@ -48,7 +48,7 @@ console.log(formData);
     }};
   return (
     <div className="mx-[5%] my-[5%] grid grid-cols-2">
-      <div>
+      <div className="mx-[2%]">
         <Title level={2}>Kindly fill out the measurements form</Title>
 
         <Form
