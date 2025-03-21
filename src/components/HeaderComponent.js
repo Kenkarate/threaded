@@ -4,7 +4,10 @@ import { useState } from "react";
 const HeaderComponent = () => {
   const [btnReactname, setbtnReactname] = useState("Login");
   return (
-    <div className="header">
+    <div className="header grid grid-cols-2">
+      <div>
+
+      </div>
       <div className="Nav-items">
         <ul className="nav-links">
           <a href="/">
@@ -13,7 +16,6 @@ const HeaderComponent = () => {
           <a href="/categories">
             <li className="home">Categories</li>
           </a>
-
           <li className="About us">About us</li>
           <li className="Cart">Cart</li>
           <a href="/steps">
@@ -30,6 +32,9 @@ const HeaderComponent = () => {
             {btnReactname}
           </button>
         </ul>
+      </div>
+      <div>
+
       </div>
     </div>
   );
