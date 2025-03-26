@@ -1,16 +1,49 @@
 import React from "react";
-import fashion from "../Assets/video/fashion.mp4";
+
 import Title from "antd/es/typography/Title";
-import { Card } from "antd";
+import { Card, Carousel } from "antd";
 import Meta from "antd/es/card/Meta";
+import slider1 from "../Assets/images/slider.jpg";
+import slider2 from "../Assets/images/top.jpg";
+import slider3 from "../Assets/images/frame.jpg";
 
 function HomePage() {
+  const contentStyle = {
+    height: "lg:90vh",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
+    background: "#364d79",
+    paddingbottom:"5%"
+  };
   return (
     <div>
       <div>
-        <video autostart autoPlay src={fashion} type="video/mp4" />
+        <Carousel autoplay>
+          <div>
+            <h3 style={contentStyle}>
+              <img src={slider1} />
+            </h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>
+              {" "}
+              <img src={slider2} />
+            </h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>
+              {" "}
+              <img src={slider3} />
+            </h3>
+          </div>
+          {/* <div>
+            <h3 style={contentStyle}>4</h3>
+          </div> */}
+        </Carousel>
+        {/* <video autostart autoPlay src={fashion} type="video/mp4" /> */}
       </div>
-      <div className="grid grid-cols-4 gap-2 py-3 mx-2">
+      <div className="grid lg:grid-cols-4 gap-2 py-3 mx-[5%]">
         <div className="bg-red-300 h-[20vh] p-[5%] rounded ">Section </div>
         <div className="bg-red-300 h-[20vh] p-[5%] rounded ">Section </div>
         <div className="bg-red-300 h-[20vh] p-[5%] rounded ">Section </div>
@@ -18,7 +51,7 @@ function HomePage() {
       </div>
       <section>
         <div className="h-[15vh] bg-slate-400">
-          <div className="grid grid-cols-4 gap-3 w-full h-full">
+          <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-2 w-full h-full">
             <div className="mx-auto my-auto">All india shipping</div>
             <div className="mx-auto my-auto">Order tracking</div>
             <div className="mx-auto my-auto">1000+ customers</div>
@@ -31,27 +64,38 @@ function HomePage() {
           <Title className="text-center">Our Process</Title>
         </div>
         <div className="text-center">
-          <ol>
-            <li>1. Select your material</li>
-            <li>Send us the product</li>
-            <li>We'll stich and send it to you</li>
-            <li>Check the fit and send us if alteration is required</li>
-            <li>Send back to us and alter if necessary.</li>
+          <ol className="text-2xl font-bold capitalize px-[5%]">
+            <div className="grid grid-cols-2 py-5">
+              <li>Select your material</li>
+            </div>
+            <div className="grid grid-cols-2 py-5 col-start-2">
+              <div></div>
+              <li>Send us the product</li>
+            </div>
+            <div className="grid grid-cols-2 py-5">
+              <li>We'll stich and send it to you</li>
+            </div>
+            <div className="grid grid-cols-2 py-5 col-start-2">
+              <div></div>
+              <li>Check the fit and send us if alteration is required</li>
+            </div>
+            <div className="grid grid-cols-2 py-5">
+              <li>Send back to us and alter if necessary.</li>
+            </div>
           </ol>
         </div>
-
       </section>
       <section className="w-[100vw]">
         <div className="w-full py-10">
           <Title className="text-center">Must have Categories</Title>
         </div>
-        <div className="grid grid-cols-5 gap-2 mx-[5%]">
-          <div>
+        <div className="grid lg:grid-cols-5 grid-cols-2 gap-2 w-[100vw] ">
+          <div className="mx-auto my-[2%]">
             {" "}
             <Card
               hoverable
               style={{
-                width: 240,
+                width: 180,
               }}
               cover={
                 <img
@@ -66,12 +110,12 @@ function HomePage() {
               />
             </Card>
           </div>
-          <div>
+          <div className="mx-auto my-[2%]">
             {" "}
             <Card
               hoverable
               style={{
-                width: 240,
+                width: 180,
               }}
               cover={
                 <img
@@ -86,12 +130,12 @@ function HomePage() {
               />
             </Card>
           </div>
-          <div>
+          <div className="mx-auto my-[2%]">
             {" "}
             <Card
               hoverable
               style={{
-                width: 240,
+                width: 180,
               }}
               cover={
                 <img
@@ -106,12 +150,12 @@ function HomePage() {
               />
             </Card>
           </div>
-          <div>
+          <div className="mx-auto my-[2%]">
             {" "}
             <Card
               hoverable
               style={{
-                width: 240,
+                width: 180,
               }}
               cover={
                 <img
@@ -126,12 +170,12 @@ function HomePage() {
               />
             </Card>
           </div>
-          <div>
+          <div className="mx-auto my-[2%]">
             {" "}
             <Card
               hoverable
               style={{
-                width: 240,
+                width: 180,
               }}
               cover={
                 <img

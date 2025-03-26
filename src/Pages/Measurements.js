@@ -47,8 +47,8 @@ console.log(formData);
       message.error("Error saving measurements: " + error.message);
     }};
   return (
-    <div className="mx-[5%] my-[5%] grid grid-cols-2">
-      <div className="mx-[2%]">
+    <div className="mx-[5%] my-[5%] grid lg:grid-cols-2 ">
+      <div className="mx-[2%] ">
         <Title level={2}>Kindly fill out the measurements form</Title>
 
         <Form
