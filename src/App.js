@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import BodyComponent from "./components/login";
+import Login from "./components/Login";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent";
 import Process from "./Pages/Process";
 import Categories from "./Pages/Categories";
-import TypeOfDesign from "./Pages/TypeOfDesign";
-import Measurements from "./Pages/Measurements";
-import Address from "./Pages/Address";
+import HomePage from "./Pages/HomePage";
+import FooterComponent from "./components/FooterComponent";
+import { Provider } from "react-redux";
+import { store, persistor } from "./Utils/store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const AppLayout = () => {
   return (
     <div className="AppLayout">
       <HeaderComponent />
       <Outlet />
+      <FooterComponent />
     </div>
   );
 };
@@ -24,31 +27,30 @@ const approuter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/home",
-        element: <BodyComponent />,
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/steps",
         element: <Process />,
-      },{
+      },
+      {
         path: "/categories",
         element: <Categories />,
-      },
-      {
-        path: "/typeofdesign",
-        element: <TypeOfDesign />,
-      },
-      {
-        path: "/measurements",
-        element: <Measurements />,
-      },
-      {
-        path: "/address",
-        element: <Address />,
       },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={approuter} />);
+root.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RouterProvider router={approuter} />
+    </PersistGate>
+  </Provider>
+);

@@ -1,14 +1,19 @@
-import { useState } from "react";
-// import { Link } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import AuthButton from "./AuthButton";
 
 const HeaderComponent = () => {
-  const [btnReactname, setbtnReactname] = useState("Login");
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth?.user || null);
   return (
     <div className="header">
       <div className="Nav-items">
         <ul className="nav-links">
-          <a href="/home">
+          <a href="/">
             <li className="home">Home</li>
+          </a>
+          <a href="/login">
+            <li className="home">Login</li>
           </a>
           <a href="/categories">
             <li className="home">Categories</li>
@@ -19,27 +24,11 @@ const HeaderComponent = () => {
           <a href="/steps">
             <li className="steps">Buy Now</li>
           </a>
-          <a href="/typeofdesign">
-            <li className="steps">Type of design</li>
-          </a>
-          <a href="/measurements">
-            <li className="steps">Measurement</li>
-          </a>
-          <a href="/address">
-            <li className="steps">Address</li>
-          </a>
-          <button
-            className="toggle-button"
-            onClick={() => {
-              btnReactname === "Login"
-                ? setbtnReactname("Logout")
-                : setbtnReactname("Login");
-            }}
-          >
-            {btnReactname}
-          </button>
         </ul>
       </div>
+      <AuthButton />
+    
+      
     </div>
   );
 };

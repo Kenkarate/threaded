@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Steps, Breadcrumb, Input, Button } from "antd";
+import Link from "../components/Link";
+import ProductInfo from "../components/ProductInfo";
+import Measurements from "./Measurements";
+import Address from "./Address";
 
 const { Step } = Steps;
 
@@ -9,12 +13,12 @@ function Process() {
 
   // Handle next button click
   const handleNext = () => {
-    setCurrentStep(prevStep => prevStep + 1);
+    setCurrentStep((prevStep) => prevStep + 1);
   };
 
   // Handle previous button click
   const handlePrev = () => {
-    setCurrentStep(prevStep => prevStep - 1);
+    setCurrentStep((prevStep) => prevStep - 1);
   };
 
   // Conditional rendering of the Input fields based on current step
@@ -23,11 +27,12 @@ function Process() {
       case 0:
         return (
           <div>
-            <Input
-              style={{ margin: "5%", width: "90%" }}
-              placeholder="Paste your link here..."
-            />
-            <Button type="primary" onClick={handleNext} style={{ margin: "5%" }}>
+            <Link />
+            <Button
+              type="primary"
+              onClick={handleNext}
+              style={{ margin: "5%" }}
+            >
               Next
             </Button>
           </div>
@@ -35,11 +40,12 @@ function Process() {
       case 1:
         return (
           <div>
-            <Input
-              style={{ margin: "5%", width: "90%" }}
-              placeholder="Enter product details..."
-            />
-            <Button type="primary" onClick={handleNext} style={{ margin: "5%" }}>
+            <ProductInfo />
+            <Button
+              type="primary"
+              onClick={handleNext}
+              style={{ margin: "5%" }}
+            >
               Next
             </Button>
             <Button onClick={handlePrev} style={{ margin: "5%" }}>
@@ -50,31 +56,43 @@ function Process() {
       case 2:
         return (
           <div>
-            <Input
-              style={{ margin: "5%", width: "90%" }}
-              placeholder="Enter your measurements..."
-            />
-            <Button type="primary" onClick={handleNext} style={{ margin: "5%" }}>
-              Next
-            </Button>
-            <Button onClick={handlePrev} style={{ margin: "5%" }}>
-              Previous
-            </Button>
+            <Measurements />
+            <div>
+              <Button
+                type="primary"
+                onClick={handleNext}
+                style={{ margin: "5%" }}
+              >
+                Next
+              </Button>
+              <Button onClick={handlePrev} style={{ margin: "5%" }}>
+                Previous
+              </Button>
+            </div>
           </div>
         );
       case 3:
         return (
           <div>
-            <Input
-              style={{ margin: "5%", width: "90%" }}
-              placeholder="Enter payment details..."
-            />
-            <Button type="primary" onClick={handleNext} style={{ margin: "5%" }}>
-              Next
-            </Button>
-            <Button onClick={handlePrev} style={{ margin: "5%" }}>
-              Previous
-            </Button>
+            <Address />
+            <div>
+              <Button
+                type="primary"
+                onClick={handleNext}
+                style={{ margin: "5%" }}
+              >
+                Next
+              </Button>
+              <Button onClick={handlePrev} style={{ margin: "5%" }}>
+                Previous
+              </Button>
+            </div>
+          </div>
+        );
+      case 4:
+        return (
+          <div>
+            <Link />
           </div>
         );
       default:
@@ -98,17 +116,18 @@ function Process() {
       </div>
       <div style={{ margin: "2% 10% 0 10%" }}>
         <Steps size="small" current={currentStep}>
-          <Step title="Type" />
+          <Step title="Link" />
           <Step title="Product Information" />
           <Step title="Measurements" />
+          <Step title="Address" />
           <Step title="Payments" />
         </Steps>
       </div>
       <div
         style={{
-          margin: "5% 20% 0 20%",
+          margin: "5% 10% 0 10%",
           border: "1px solid black",
-          width: "50%",
+          width: "80%",
         }}
       >
         {renderStepContent()}

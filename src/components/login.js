@@ -1,16 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { useState} from "react";
-
-
-const BodyComponent = ()=>{
+import { useState } from "react";
+import { signInWithGoogle, logout  } from "../../Firebase";
+import AuthButton from "./AuthButton";
+const Login = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  
+ 
     const handleLogin = () => {
       alert(`Logging in as: ${username}`);
     };
-  
     return (
       <div className="login-container">
         
@@ -36,4 +34,4 @@ const BodyComponent = ()=>{
     );
   };
   
-  export default BodyComponent;
+  export default Login;
