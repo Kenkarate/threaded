@@ -3,9 +3,9 @@ import React from "react";
 function FooterComponent() {
   return (
     <div>
-      <div className="min-h-screen flex flex-col">
+      <div className=" flex flex-col">
         <footer className="bg-gray-800 p-4 text-white text-center mt-auto">
-          <div className="grid grid-cols-4">
+          <div className="grid lg:grid-cols-4 gap-2">
             <div>
               Threaded Logo <br />
               contact details
