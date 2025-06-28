@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // Uses localStorage for persistence
+import storage from "redux-persist/lib/storage"; 
 
 const initialState = {
-  user: null, // Stores logged-in user details
+  user: null, 
+  formData: null, 
 };
 
 const authSlice = createSlice({
@@ -11,15 +12,21 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      state.user = action.payload; // Save user details
+      state.user = action.payload; 
     },
     logoutUser: (state) => {
-      state.user = null; // Clear user details
+      state.user = null; 
+    },
+    setFormData: (state, action) => {
+      state.formData = action.payload; 
+    },
+    clearFormData: (state) => {
+      state.formData = null;
     },
   },
 });
 
-export const { loginUser, logoutUser } = authSlice.actions;
+export const { loginUser, logoutUser, setFormData, clearFormData } = authSlice.actions;
 
 const persistConfig = {
   key: "auth",

@@ -20,31 +20,16 @@ const HeaderComponent = () => {
             <li className="home">Categories</li>
           </a>
           <li className="About us">About us</li>
-          <li className="Cart">Cart</li>
+          
           <a href="/steps">
             <li className="steps">Buy Now</li>
           </a>
         </ul>
       </div>
-<<<<<<< HEAD
+      <a href="/cart">
+            <li className="Cart">Cart</li>
+      </a>
       <AuthButton />
-    
-      
-=======
-      <div className="my-auto">
-        <button
-          className="toggle-button"
-          onClick={() => {
-            btnReactname === "Login"
-              ? setbtnReactname("Logout")
-              : setbtnReactname("Login");
-          }}
-        >
-          {btnReactname}
-        </button>
-      </div>
-      <div></div>
->>>>>>> 4354f48ca33121a1b955135749914fa547115aa5
     </div>
   );
 };

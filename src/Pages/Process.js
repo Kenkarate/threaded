@@ -1,98 +1,120 @@
-import React, { useState } from "react";
-import { Steps, Breadcrumb, Input, Button } from "antd";
+import { Steps, Breadcrumb, Button } from "antd";
 import Link from "../components/Link";
 import ProductInfo from "../components/ProductInfo";
 import Measurements from "./Measurements";
 import Address from "./Address";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { doc, getDoc, collection, addDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../Firebase";
+import { useNavigate } from "react-router-dom";
+import { message } from "antd";
+import { useDispatch } from "react-redux";
+import { setFormData } from "../Utils/store/authSlice";
 
 const { Step } = Steps;
 
 function Process() {
-  // Step state to track current step
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
+  const [imageUrls, setImageUrls] = useState([]);
+  const user = useSelector((state) => state.auth.user);
+  const formData = useSelector((state) => state.auth.formData || {});
+  const dispatch = useDispatch();
+  const updateFormData = (updatedData) => {
+    dispatch(setFormData({ ...formData, ...updatedData }));
+  };
+  useEffect(() => {
+    const fetchUserImages = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          const data = userSnap.data();
+          updateFormData({
+            imageUrls: data.images || [],
+            productDetails: data.productDetails || "",
+          });
+        }
+      }
+    };
 
-  // Handle next button click
-  const handleNext = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
+    fetchUserImages();
+  }, [user]);
+
+  const handleNext = async () => {
+    const stepValidation = {
+      1: async () => {
+        if (!formData.itemPrice) throw new Error("Item price required");
+      },
+      2: async () => {},
+      3: async () => {
+        if (!user) throw new Error("User not logged in");
+
+        try {
+          const cartRef = collection(doc(db, "users", user.uid), "cartItems");
+
+          await addDoc(cartRef, {
+            ...formData,
+            timestamp: new Date(),
+          });
+
+          message.success("Cart item saved successfully!");
+          dispatch(setFormData({}));
+        } catch (err) {
+          console.error("Firestore Error:", err);
+          message.error("Failed to save cart data");
+          throw err;
+        }
+      },
+    };
+
+    try {
+      if (stepValidation[currentStep]) await stepValidation[currentStep]();
+
+      if (currentStep === 3) {
+        dispatch(setFormData(formData));
+        navigate("/checkout",  { state: { formData } });
+      } else {
+        setCurrentStep((prev) => prev + 1);
+      }
+    } catch (error) {
+      console.error("Validation error:", error.message);
+    }
   };
 
-  // Handle previous button click
   const handlePrev = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  // Conditional rendering of the Input fields based on current step
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
         return (
           <div>
             <Link />
-            <Button
-              type="primary"
-              onClick={handleNext}
-              style={{ margin: "5%" }}
-            >
-              Next
-            </Button>
           </div>
         );
       case 1:
         return (
           <div>
-            <ProductInfo />
-            <Button
-              type="primary"
-              onClick={handleNext}
-              style={{ margin: "5%" }}
-            >
-              Next
-            </Button>
-            <Button onClick={handlePrev} style={{ margin: "5%" }}>
-              Previous
-            </Button>
+            <ProductInfo
+              imageUrls={imageUrls}
+              formData={formData}
+              setFormData={updateFormData}
+            />
           </div>
         );
       case 2:
         return (
           <div>
-            <Measurements />
-            <div>
-              <Button
-                type="primary"
-                onClick={handleNext}
-                style={{ margin: "5%" }}
-              >
-                Next
-              </Button>
-              <Button onClick={handlePrev} style={{ margin: "5%" }}>
-                Previous
-              </Button>
-            </div>
+            <Measurements formData={formData} setFormData={updateFormData} />
           </div>
         );
       case 3:
         return (
           <div>
-            <Address />
-            <div>
-              <Button
-                type="primary"
-                onClick={handleNext}
-                style={{ margin: "5%" }}
-              >
-                Next
-              </Button>
-              <Button onClick={handlePrev} style={{ margin: "5%" }}>
-                Previous
-              </Button>
-            </div>
-          </div>
-        );
-      case 4:
-        return (
-          <div>
-            <Link />
+            <Address formData={formData} setFormData={updateFormData} />
           </div>
         );
       default:
@@ -120,7 +142,6 @@ function Process() {
           <Step title="Product Information" />
           <Step title="Measurements" />
           <Step title="Address" />
-          <Step title="Payments" />
         </Steps>
       </div>
       <div
@@ -131,6 +152,19 @@ function Process() {
         }}
       >
         {renderStepContent()}
+        <div className="flex justify-center gap-4 mt-4 mb-6">
+          {currentStep > 0 && <Button onClick={handlePrev}>Previous</Button>}
+          {currentStep < 3 && (
+            <Button type="primary" onClick={handleNext}>
+              Next
+            </Button>
+          )}
+          {currentStep === 3 && (
+            <Button type="primary" onClick={handleNext}>
+              Proceed to Checkout
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
